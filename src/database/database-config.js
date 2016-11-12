@@ -7,8 +7,7 @@ const PASSWORD = process.env.DB_PASSWORD;
 const RETRY_COUNT = process.env.RETRY_COUNT || 10;
 
 export default class DatabaseConfig {
-
-    connect(tries) {
+    connect(callback, tries) {
         if (!tries) {
             tries = 0;
         }
@@ -18,12 +17,15 @@ export default class DatabaseConfig {
                     console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
                     tries++;
                     setTimeout(() => {
-                        new DatabaseConfig().connect(tries);
+                        new DatabaseConfig().connect(callback, tries);
                     }, 5000);
                 }
             });
         } else {
-            throw 'Failed to connect to database';
+            callback({
+                type: 'Connection timeout',
+                message: 'Failed connecting to database ' + DB
+            });
         }
     }
 
