@@ -4,7 +4,6 @@ import AddServiceAction from './add-service-action';
 import lodash from 'lodash';
 export default class ProcessPorts {
     constructor(servicePorts, restServices, callback, index) {
-        console.log('ProcessPorts', this);
         index = getIndex(index);
         if (index < servicePorts.length) {
             this.port = servicePorts[index];

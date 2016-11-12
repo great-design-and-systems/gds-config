@@ -19,6 +19,8 @@ export default class DatabaseConfig {
                     setTimeout(() => {
                         new DatabaseConfig().connect(callback, tries);
                     }, 5000);
+                } else {
+                    callback();
                 }
             });
         } else {
