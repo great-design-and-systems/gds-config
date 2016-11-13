@@ -18,9 +18,10 @@ export default class Logger {
                 });
             } else {
                 new AddServiceAction(actions.links, (errApi, result) => {
+                    console.log('result', result);
                     global.gdsLogger = {
                         logInfo: function (message) {
-                            result.createInfo({
+                            result.createInfo.execute({
                                 params: {
                                     serviceName: DOMAIN
                                 },
@@ -30,7 +31,7 @@ export default class Logger {
                             });
                         },
                         logError: function (message) {
-                            result.createError({
+                            result.createError.execute({
                                 params: {
                                     serviceName: DOMAIN
                                 },
@@ -40,7 +41,7 @@ export default class Logger {
                             });
                         },
                         logDebug: function (message) {
-                            result.createDebug({
+                            result.createDebug.execute({
                                 params: {
                                     serviceName: DOMAIN
                                 },
@@ -50,7 +51,7 @@ export default class Logger {
                             });
                         },
                         logWarn: function (message) {
-                            result.createWarn({
+                            result.createWarn.execute({
                                 params: {
                                     serviceName: DOMAIN
                                 },

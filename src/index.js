@@ -48,3 +48,7 @@ export class GDSUtil {
         return new Logger(callback);
     }
 }
+
+new GDSUtil().getLogger((err) => {
+
+});
