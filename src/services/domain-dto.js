@@ -1,5 +1,5 @@
 import DomainAPIModel from './domain-api';
-export default class DomainDto extends DomainAPIModel {
+export default class DomainDtoModel extends DomainAPIModel {
     constructor(type, data) {
         super();
         this.type = type;

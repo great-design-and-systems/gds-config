@@ -3,6 +3,7 @@ import ServerConfig from './server/server';
 import ServicesConfig from './services/services';
 import DomainAPIModel from './services/domain-api';
 import DatabaseTestConfig from './database/database-test-config';
+import DomainDtoModel from './services/domain-dto';
 export class GDSDatabase extends DatabaseConfig {
 
 }
@@ -23,5 +24,9 @@ export class GDSDomainAPI extends DomainAPIModel {
 }
 
 export class GDSDatabaseTest extends DatabaseTestConfig {
+
+}
+
+export class GDSDomainDTO extends DomainDtoModel {
 
 }
