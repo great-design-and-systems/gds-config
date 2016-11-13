@@ -4,6 +4,7 @@ import ServicesConfig from './services/services';
 import DomainAPIModel from './services/domain-api';
 import DatabaseTestConfig from './database/database-test-config';
 import DomainDtoModel from './services/domain-dto';
+import { DomainPaginateHelper } from './services/domain-request-helper';
 export class GDSDatabase extends DatabaseConfig {
 
 }
@@ -28,5 +29,9 @@ export class GDSDatabaseTest extends DatabaseTestConfig {
 }
 
 export class GDSDomainDTO extends DomainDtoModel {
+
+}
+
+export class GDSDomainPaginateHelper extends DomainPaginateHelper {
 
 }
