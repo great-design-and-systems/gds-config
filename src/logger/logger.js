@@ -18,7 +18,6 @@ export default class Logger {
                 });
             } else {
                 new AddServiceAction(actions.links, (errApi, result) => {
-                    console.log('result', result);
                     global.gdsLogger = {
                         logInfo: function (message) {
                             result.createInfo.execute({
@@ -28,6 +27,8 @@ export default class Logger {
                                 data: {
                                     message: message
                                 }
+                            }, () => {
+                                console.log(message);
                             });
                         },
                         logError: function (message) {
@@ -38,6 +39,8 @@ export default class Logger {
                                 data: {
                                     message: message
                                 }
+                            }, () => {
+                                console.error(message);
                             });
                         },
                         logDebug: function (message) {
@@ -48,6 +51,8 @@ export default class Logger {
                                 data: {
                                     message: message
                                 }
+                            }, () => {
+                                console.debug(message);
                             });
                         },
                         logWarn: function (message) {
@@ -58,7 +63,9 @@ export default class Logger {
                                 data: {
                                     message: message
                                 }
-                            })
+                            }, () => {
+                                console.warn(message);
+                            });
                         }
                     };
                     callback();
