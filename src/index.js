@@ -6,6 +6,8 @@ import DatabaseTestConfig from './database/database-test-config';
 import DomainDtoModel from './services/domain-dto';
 import { DomainPaginateHelper } from './services/domain-request-helper';
 import GetDateRange from './util/get-date-range';
+import Logger from './logger/logger';
+
 export class GDSDatabase extends DatabaseConfig {
 
 }
@@ -40,5 +42,9 @@ export class GDSDomainPaginateHelper extends DomainPaginateHelper {
 export class GDSUtil {
     getDateRange(dateFormat) {
         return new GetDateRange(dateFormat);
+    }
+
+    getLogger(callback) {
+        return new Logger(callback);
     }
 }
