@@ -2,14 +2,16 @@ import lodash from 'lodash';
 
 export class DomainPaginateHelper {
     constructor(req) {
-        const sort = req.query.page_sort || {};
-        this.sort = {};
-        if (sort instanceof Array) {
-            sort.forEach(field => {
-                addSortField(this.sort, field);
-            });
-        } else {
-            addSortField(this.sort, sort);
+        const sort = req.query.page_sort;
+        if (sort) {
+            this.sort = {};
+            if (sort instanceof Array) {
+                sort.forEach(field => {
+                    addSortField(this.sort, field);
+                });
+            } else {
+                addSortField(this.sort, sort);
+            }
         }
         this.offset = req.query.page_offset;
         this.limit = req.query.page_limit ? req.query.page_limit : 25;
