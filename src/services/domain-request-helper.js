@@ -41,7 +41,7 @@ export class DomainPaginateHelper {
 }
 
 function addSortField(sort, field) {
-    if (field.indexOf(0) === '-') {
+    if (field.charAt(0) === '-') {
         field = field.substring(1);
         lodash.set(sort, field, -1);
     } else {
