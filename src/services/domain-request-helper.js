@@ -2,7 +2,7 @@ import lodash from 'lodash';
 
 export class DomainPaginateHelper {
     constructor(req) {
-        const sort = req.query.page_sort;
+        const sort = req.query.page_sort || {};
         this.sort = {};
         if (sort instanceof Array) {
             sort.forEach(field => {
