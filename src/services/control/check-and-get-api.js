@@ -4,7 +4,7 @@ const API_SERVICE_RETRY_TIMEOUT = process.env.API_SERVICE_RETRY_TIMEOUT || 5000;
 export default class CheckAndGetApi {
     constructor(url, callback) {
         console.log('Connecting to ', url);
-        this.retry = 0;
+        let retry = 0;
         restler.get(url, {
             timeout: API_SERVICE_RETRY_TIMEOUT
         }).on('success', function (data) {
