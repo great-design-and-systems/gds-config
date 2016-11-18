@@ -77,7 +77,7 @@ export default class Logger {
 
 function getMessage(message) {
   if (message instanceof Error) {
-    return messsage.stack;
+    return message.stack;
   } else {
     return message;
   }
