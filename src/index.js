@@ -3,7 +3,7 @@ import DatabaseTestConfig from './database/database-test-config';
 import DomainAPIModel from './services/domain-api';
 import DomainDtoModel from './services/domain-dto';
 import {
-  DomainPaginateHelper,
+    DomainPaginateHelper,
 } from './services/domain-request-helper';
 import GetDateRange from './util/get-date-range';
 import Logger from './logger/logger';
@@ -23,10 +23,10 @@ export class GDSServices extends ServicesConfig {
 }
 
 export class GDSDomainAPI extends DomainAPIModel {
-  constructor() {
-    super();
-    this.setDomainName(process.env.DOMAIN_NAME);
-  }
+    constructor() {
+        super();
+        this.setDomainName(process.env.DOMAIN_NAME);
+    }
 }
 
 export class GDSDatabaseTest extends DatabaseTestConfig {
@@ -42,15 +42,11 @@ export class GDSDomainPaginateHelper extends DomainPaginateHelper {
 }
 
 export class GDSUtil {
-  getDateRange(dateFormat) {
-    return new GetDateRange(dateFormat);
-  }
+    getDateRange(dateFormat) {
+        return new GetDateRange(dateFormat);
+    }
 
-  getLogger(callback) {
-    return new Logger(callback);
-  }
+    getLogger(callback) {
+        return new Logger(callback);
+    }
 }
-
-new GDSServices().initServices(function (err, services) {
-  console.log('services', services);
-});

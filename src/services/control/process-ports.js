@@ -22,13 +22,13 @@ export default class ProcessPorts {
                             callback(errLink);
                         } else {
                             lodash.set(lodash.get(restServices, this.serviceName), 'links', links);
-                            next(restServices);
+                            next();
                         }
                     });
                 }
             });
-        }).end((result) => {
-            callback(undefined, result);
+        }).end(() => {
+            callback(undefined, servicePorts);
         });
     }
 }
