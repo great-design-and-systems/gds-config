@@ -1,6 +1,6 @@
-import lodash from 'lodash';
-import SetDefaultProtocol from './control/set-default-protocol';
 import ProcessPorts from './control/process-ports';
+import SetDefaultProtocol from './control/set-default-protocol';
+import lodash from 'lodash';
 
 export default class ServicesConfig {
     constructor() {

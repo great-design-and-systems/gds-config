@@ -1,8 +1,9 @@
 import restler from 'restler';
-const API_SERVICE_RETRY_COUNT = process.env.API_SERVICE_RETRY_COUNT || 20;
-const API_SERVICE_RETRY_TIMEOUT = process.env.API_SERVICE_RETRY_TIMEOUT || 5000;
+
 export default class CheckAndGetApi {
     constructor(url, callback) {
+        const API_SERVICE_RETRY_COUNT = process.env.API_SERVICE_RETRY_COUNT || 20;
+        const API_SERVICE_RETRY_TIMEOUT = process.env.API_SERVICE_RETRY_TIMEOUT || 5000;
         console.log('Connecting to ', url);
         let retry = 0;
         restler.get(url, {

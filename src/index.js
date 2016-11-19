@@ -1,14 +1,14 @@
 import DatabaseConfig from './database/database-config';
-import ServerConfig from './server/server';
-import ServicesConfig from './services/services';
-import DomainAPIModel from './services/domain-api';
 import DatabaseTestConfig from './database/database-test-config';
+import DomainAPIModel from './services/domain-api';
 import DomainDtoModel from './services/domain-dto';
 import {
-  DomainPaginateHelper
+  DomainPaginateHelper,
 } from './services/domain-request-helper';
 import GetDateRange from './util/get-date-range';
 import Logger from './logger/logger';
+import ServerConfig from './server/server';
+import ServicesConfig from './services/services';
 
 export class GDSDatabase extends DatabaseConfig {
 
@@ -50,3 +50,7 @@ export class GDSUtil {
     return new Logger(callback);
   }
 }
+
+new GDSServices().initServices(function (err, services) {
+  console.log('services', services);
+});
