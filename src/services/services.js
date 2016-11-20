@@ -5,7 +5,7 @@ import lodash from 'lodash';
 export default class ServicesConfig {
     constructor() {
         this.servicesPorts = [];
-        this.restServices = [];
+        this.restServices = {};
     }
     initServices(callback) {
         lodash.forEach(process.env, (value, key) => {
