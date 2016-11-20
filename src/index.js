@@ -8,7 +8,7 @@ import {
 import GetDateRange from './util/get-date-range';
 import Logger from './logger/logger';
 import ServerConfig from './server/server';
-import ServicesConfig from './services/services';
+import { ServicesConfig, Services } from './services/services';
 
 export class GDSDatabase extends DatabaseConfig {
 
@@ -50,3 +50,7 @@ export class GDSUtil {
         return new Logger(callback);
     }
 }
+
+export class GDSServiceAPI extends Services {
+
+} 

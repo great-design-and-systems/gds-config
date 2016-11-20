@@ -2,7 +2,7 @@ import ProcessPorts from './control/process-ports';
 import SetDefaultProtocol from './control/set-default-protocol';
 import lodash from 'lodash';
 
-export default class ServicesConfig {
+export class ServicesConfig {
     constructor() {
         this.servicesPorts = [];
         this.restServices = {};
@@ -19,6 +19,23 @@ export default class ServicesConfig {
                 this.servicesPorts.push(port);
             }
         });
-        new ProcessPorts(this.servicesPorts, this.restServices, callback);
+        new ProcessPorts(this.servicesPorts, this.restServices, (err, services) => {
+            if (err) {
+                console.error(err);
+                callback(err);
+            } else {
+                global.gdsServices = services;
+                callback();
+            }
+        });
+    }
+}
+export class Services {
+    constructor() {
+        if (global.gdsServices) {
+            lodash.forEach(global.gdsServices, (value, field) => {
+                lodash.set(this, field, value);
+            });
+        }
     }
 }
