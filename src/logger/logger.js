@@ -9,7 +9,6 @@ export default class Logger {
     new SetDefaultProtocol(LOGGER_PORT, (err, port) => {
       this.port = port;
     });
-    console.log('constructor', this);
     new CheckAndGetApi(this.port, (err, actions) => {
       if (err) {
         console.error(err);
@@ -19,7 +18,7 @@ export default class Logger {
       } else {
         new AddServiceAction(actions.links, (errApi, result) => {
           global.gdsLogger = {
-            logInfo: function(message) {
+            logInfo: function (message) {
               result.createInfo.execute({
                 params: {
                   serviceName: DOMAIN
@@ -31,7 +30,7 @@ export default class Logger {
                 console.log(message);
               });
             },
-            logError: function(message) {
+            logError: function (message) {
               result.createError.execute({
                 params: {
                   serviceName: DOMAIN
@@ -43,7 +42,7 @@ export default class Logger {
                 console.error(message);
               });
             },
-            logDebug: function(message) {
+            logDebug: function (message) {
               result.createDebug.execute({
                 params: {
                   serviceName: DOMAIN
@@ -55,7 +54,7 @@ export default class Logger {
                 console.debug(message);
               });
             },
-            logWarn: function(message) {
+            logWarn: function (message) {
               result.createWarn.execute({
                 params: {
                   serviceName: DOMAIN
