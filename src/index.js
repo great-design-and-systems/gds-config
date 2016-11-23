@@ -69,24 +69,3 @@ export class GDSServiceAPI extends Services {
 export class GDSEventJobs extends EventJobs {
 
 }
-
-
-new GDSUtil().initEvents((errEvent, resultEvent) => {
-  if (errEvent) {
-    console.error(errEvent);
-  } else {
-    const job = new GDSEventJobs().createProcedureJob('TICKET', 'SYSTEM');
-    job.setNextEvent('CREATE_TICKET', 'Tickets.createTicket').addBody('studentId', '123456').addHeader('DEPARTMENT', 'COMPUTER SCIENCE').addParam('facultyId', '236');
-    job.setNextEvent('SEND_EMAIL_NOTIFICATION', 'Emails.sendEmail').addBody('recipient', '{data.emailAddress}').addBody('context', '{data.content}');
-    console.log('job', job.context);
-    console.log('job', job.context.data);
-    job.execute((err, result) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(result);
-      }
-    });
-  }
-
-});

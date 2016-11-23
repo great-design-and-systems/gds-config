@@ -58,9 +58,11 @@ class EventJob {
     this.createJob = createJob;
   }
   execute(callback) {
-    console.log('saving context', this.context);
     this.createJob.execute({
-      data: this.context
+      data: this.context,
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }, callback);
   }
   addBody(field, value) {
@@ -155,7 +157,8 @@ export class ProcedureJob extends EventJob {
     const context = this.context.data.eventSequence[this.context.data.eventSequence.length - 1];
     if (!context.input) {
       context.input = {};
-    } else if (!lodash.get(context.input, type)) {
+    }
+    if (!lodash.get(context.input, type)) {
       lodash.set(context.input, type, {});
     }
     const inputType = lodash.get(context.input, type);
