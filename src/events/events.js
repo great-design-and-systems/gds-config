@@ -73,8 +73,8 @@ class EventJob {
     this.addInput('header', field, value);
     return this;
   }
-  addParam(field, value) {
-    this.addInput('param', field, value);
+  addPath(field, value) {
+    this.addInput('path', field, value);
     return this;
   }
   addQuery(field, value) {
