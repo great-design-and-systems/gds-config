@@ -1,3 +1,5 @@
+import AddServiceAction from './control/add-service-action';
+import CheckAndGetApi from './control/check-and-get-api';
 import ProcessPorts from './control/process-ports';
 import SetDefaultProtocol from './control/set-default-protocol';
 import lodash from 'lodash';
@@ -28,6 +30,30 @@ export class ServicesConfig {
                 callback();
             }
         });
+    }
+    initService(servicePort, callback) {
+        try {
+            new SetDefaultProtocol(servicePort, function (errPort, httpLink) {
+                if (errPort) {
+                    throw new Error('Failed setting default port for ' + servicePort);
+                }
+                new CheckAndGetApi(httpLink, (errApi, api) => {
+                    if (errApi) {
+                        throw new Error('Failed getting service api for ' + servicePort);
+                    } else {
+                        new AddServiceAction(api.links, errorLinks => {
+                            if (errorLinks) {
+                                throw new Error('Failed setting executable links for ' + servicePort);
+                            } else {
+                                callback(undefined, api);
+                            }
+                        });
+                    }
+                });
+            });
+        } catch (err) {
+            callback(err);
+        }
     }
 }
 export class Services {

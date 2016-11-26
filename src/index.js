@@ -1,3 +1,12 @@
+import {
+  EventJobs,
+  Events,
+} from './events/events';
+import {
+  Services,
+  ServicesConfig,
+} from './services/services';
+
 import DatabaseConfig from './database/database-config';
 import DatabaseTestConfig from './database/database-test-config';
 import DomainAPIModel from './services/domain-api';
@@ -8,14 +17,6 @@ import {
 import GetDateRange from './util/get-date-range';
 import Logger from './logger/logger';
 import ServerConfig from './server/server';
-import {
-  ServicesConfig,
-  Services
-} from './services/services';
-import {
-  Events,
-  EventJobs
-} from './events/events';
 
 export class GDSDatabase extends DatabaseConfig {
 
