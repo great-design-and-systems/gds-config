@@ -15,6 +15,7 @@ import {
   DomainPaginateHelper,
 } from './services/domain-request-helper';
 import GetDateRange from './util/get-date-range';
+import GetJsonFieldValue from './util/get-json-field-value';
 import Logger from './logger/logger';
 import ServerConfig from './server/server';
 
@@ -60,6 +61,9 @@ export class GDSUtil {
 
   initEvents(callback) {
     return new Events(callback);
+  }
+  getJsonValue(jsonOject, exp, callback) {
+    new GetJsonFieldValue(jsonOject, exp, callback);
   }
 }
 
