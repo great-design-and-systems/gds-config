@@ -2,6 +2,7 @@ import AddServiceAction from './control/add-service-action';
 import CheckAndGetApi from './control/check-and-get-api';
 import ProcessPorts from './control/process-ports';
 import SetDefaultProtocol from './control/set-default-protocol';
+import batch from 'batchflow';
 import lodash from 'lodash';
 
 export class ServicesConfig {
@@ -47,6 +48,34 @@ export class ServicesConfig {
                             } else {
                                 callback(undefined, api);
                             }
+                        });
+                    }
+                });
+            });
+        } catch (err) {
+            callback(err);
+        }
+    }
+    initApi(apiPort, callback) {
+        try {
+            new SetDefaultProtocol(apiPort, function (errPort, httpLink) {
+                if (errPort) {
+                    throw new Error('Failed setting default port for ' + apiPort);
+                }
+                new CheckAndGetApi(httpLink, (errApi, api) => {
+                    if (errApi) {
+                        throw new Error('Failed getting service api for ' + apiPort);
+                    } else {
+                        batch(api).sequential().each((field, port, next) => {
+                            new AddServiceAction(port.links, errorLinks => {
+                                if (errorLinks) {
+                                    throw new Error('Failed setting executable links for ' + apiPort);
+                                } else {
+                                    next();
+                                }
+                            });
+                        }).end(() => {
+                            callback(undefined, api);
                         });
                     }
                 });
