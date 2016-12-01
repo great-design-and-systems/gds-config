@@ -6,7 +6,7 @@ export default class DomainAPIModel {
     }
 
     setDomainName(domainName) {
-        this.domainName = domainName;
+        this.domain = domainName;
     }
 
     addLink(name, method, url) {
