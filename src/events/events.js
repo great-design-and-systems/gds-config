@@ -1,7 +1,8 @@
-import SetDefaultProtocol from '../services/control/set-default-protocol';
-import CheckAndGetApi from '../services/control/check-and-get-api';
 import AddServiceAction from '../services/control/add-service-action';
+import CheckAndGetApi from '../services/control/check-and-get-api';
+import SetDefaultProtocol from '../services/control/set-default-protocol';
 import lodash from 'lodash';
+
 const EVENT_PORT = process.env.EVENT_SERVICE_PORT;
 const DOMAIN = process.env.DOMAIN_NAME || 'default';
 export class Events {
@@ -104,8 +105,8 @@ export class ScheduledJob extends EventJob {
   constructor(eventName, session, createJob) {
     super(eventName, session, 'SCHEDULED', createJob);
   }
-  setCronInterval(interval) {
-    this.context.data.cronInterval = interval;
+  setDateTime(dateTime) {
+    this.context.data.dateTime = dateTime;
     return this;
   }
   setNextEvent(name, type, data) {

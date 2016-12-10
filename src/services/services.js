@@ -63,20 +63,28 @@ export class ServicesConfig {
                     throw new Error('Failed setting default port for ' + apiPort);
                 }
                 new CheckAndGetApi(httpLink, (errApi, api) => {
-                    if (errApi) {
-                        throw new Error('Failed getting service api for ' + apiPort);
-                    } else {
-                        batch(api).sequential().each((field, port, next) => {
-                            new AddServiceAction(port.links, errorLinks => {
-                                if (errorLinks) {
-                                    throw new Error('Failed setting executable links for ' + apiPort);
-                                } else {
-                                    next();
+                    try {
+                        if (errApi) {
+                            throw new Error('Failed getting service api for ' + apiPort);
+                        } else {
+                            batch(api).sequential().each((field, port, next) => {
+                                try {
+                                    new AddServiceAction(port.links, errorLinks => {
+                                        if (errorLinks) {
+                                            throw new Error('Failed setting executable links for ' + apiPort);
+                                        } else {
+                                            next();
+                                        }
+                                    });
+                                } catch (err) {
+                                    callback(err);
                                 }
+                            }).end(() => {
+                                callback(undefined, api);
                             });
-                        }).end(() => {
-                            callback(undefined, api);
-                        });
+                        }
+                    } catch (err) {
+                        callback(err);
                     }
                 });
             });
