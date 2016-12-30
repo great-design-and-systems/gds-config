@@ -13,7 +13,8 @@ export class DomainPaginateHelper {
         addSortField(this.sort, sort);
       }
     }
-    this.offset = req.query.page_offset;
+    this.page = req.query.page_current ? parseInt(req.query.page_current) : undefined;
+    this.offset = req.query.page_offset ? parseInt(req.query.page_offset) : 0;
     this.limit = req.query.page_limit ? parseInt(req.query.page_limit) : 25;
     this.populate = req.query.page_populate;
     this.select = req.query.page_select;
@@ -37,6 +38,9 @@ export class DomainPaginateHelper {
 
   setSort(sort) {
     this.sort = sort;
+  }
+  setPage(page){
+    this.page = page;
   }
 }
 
