@@ -65,6 +65,15 @@ export class GDSUtil {
   getJsonValue(jsonOject, exp, callback) {
     new GetJsonFieldValue(jsonOject, exp, callback);
   }
+  isJson(json) {
+    let isjson = true;
+    try {
+      JSON.parse(json);
+    } catch (err) {
+      isjson = false;
+    }
+    return isjson;
+  }
 }
 
 export class GDSServiceAPI extends Services {
