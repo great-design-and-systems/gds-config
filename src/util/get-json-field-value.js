@@ -1,7 +1,9 @@
+import lodash from 'lodash';
+
 export default class GetJsonFieldValue {
     constructor(jsonObject, exp, callback) {
         try {
-            callback(undefined, eval("jsonObject." + exp));
+            callback(undefined, lodash.get(jsonObject, exp));
         } catch (err) {
             callback(err);
         }
