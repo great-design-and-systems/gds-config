@@ -1,8 +1,10 @@
-import restler from 'restler';
-import lodash from 'lodash';
 import SetDefaultProtocol from './set-default-protocol';
 import fs from 'fs';
+import lodash from 'lodash';
+import restler from 'restler';
 
+const PROXY_HOST = process.env.PROXY_HOST;
+const PROXY_PORT = process.env.PROXY_PORT;
 
 export default class AddServiceAction {
     constructor(links, callback) {
@@ -54,6 +56,12 @@ function action(options, callback) {
         lodash.set(options, 'data', {});
         lodash.set(options.data, options.multipartField, file);
         console.log('data converted to rest file', options);
+    }
+    if(PROXY_HOST && PROXY_PORT){
+        options.proxy = {
+            host: PROXY_HOST,
+            port: PROXY_PORT
+        };
     }
     lodash.get(restler, method)(url, options)
         .on('success', function (result, response) {
