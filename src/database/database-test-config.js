@@ -43,7 +43,7 @@ export default class DatabaseTestConfig {
         url += ':';
         url += PORT;
         url += '/';
-        url += DB;
+        url += TEST_DB;
         console.log('mongo:' + url);
         return url;
     }
