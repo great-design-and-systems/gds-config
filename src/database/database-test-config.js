@@ -27,7 +27,7 @@ export default class DatabaseTestConfig {
         } else {
             callback({
                 type: 'Connection timeout',
-                message: 'Failed connecting to database ' + DB
+                message: 'Failed connecting to database ' + TEST_DB
             });
         }
     }
