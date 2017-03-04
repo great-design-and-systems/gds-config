@@ -18,7 +18,7 @@ export default class DatabaseTestConfig {
                     console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
                     tries++;
                     setTimeout(() => {
-                        new DatabaseConfig().connect(callback, tries);
+                        new DatabaseTestConfig().connect(callback, tries);
                     }, 5000);
                 } else {
                     return clearDB(callback);
@@ -47,6 +47,10 @@ export default class DatabaseTestConfig {
         console.log('mongo:' + url);
         return url;
     }
+    disconnect(done) {
+        mongoose.disconnect();
+        return done();
+    }
 }
 
 function clearDB(done) {
@@ -61,7 +65,3 @@ function clearDB(done) {
     return done();
 }
 
-function disconnect(done) {
-    mongoose.disconnect();
-    return done();
-}
