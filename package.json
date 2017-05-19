@@ -1,6 +1,6 @@
 {
   "name": "gds-config",
-  "version": "0.1.43",
+  "version": "0.1.44",
   "description": "Microservice config",
   "main": "dist/index.js",
   "scripts": {

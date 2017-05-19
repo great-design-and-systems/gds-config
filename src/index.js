@@ -8,7 +8,7 @@ import {
 } from './services/services';
 
 import AppLogger from './logger/AppLogger';
-import Chains from './chains/Chain';
+import Chain from './chains/Chain';
 import DatabaseConfig from './database/database-config';
 import DatabaseTestConfig from './database/database-test-config';
 import DomainAPIModel from './services/domain-api';
@@ -21,8 +21,17 @@ import GetJsonFieldValue from './util/get-json-field-value';
 import Logger from './logger/logger';
 import ServerConfig from './server/server';
 
-export const GDSChains = Chains;
-export const GDSAppLogger = AppLogger;
+export class GDSAppLogger extends AppLogger {
+  constructor(message) {
+    super(message);
+  }
+}
+
+export class GDSChain extends Chain {
+  constructor(name, action, next, err) {
+    super(name, action, next, err);
+  }
+}
 export class GDSDatabase extends DatabaseConfig {
 
 }
