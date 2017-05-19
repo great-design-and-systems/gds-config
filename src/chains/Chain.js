@@ -12,32 +12,32 @@ export default class Chain {
         }
         this.name = name;
         this.action = action;
-        if (!global.chains) {
-            global.chains = [];
+        if (!global.$$ch_io) {
+            global.$$ch_io = [];
         }
-        global.chains[this.name] = this;
+        global.$$ch_io[this.name] = this;
     }
     execute(done, param) {
         if ((param && param.$error) && !this.context.$error) {
             this.context.set('$error', param.$error());
         }
         if (this.context.$isTerminated && this.context.$isTerminated()) {
-            done();
+            done(this.context);
         } else {
             setTimeout(() => {
                 try {
                     this.action(this.context, param, () => {
                         if (this.next) {
-                            global.chains[this.next].execute(done, this.context);
+                            global.$$ch_io[this.next].execute(done, this.context);
                         } else {
-                            done()
+                            done(this.context);
                         }
                     })
                 } catch (err) {
                     if (this.context.$error) {
                         this.context.set('$errorMessage', err);
                         this.context.set('$name', this.name);
-                        global.chains[this.context.$error()].execute(done, this.context);
+                        global.$$ch_io[this.context.$error()].execute(done, this.context);
                     } else {
                         throw err;
                     }
