@@ -15,7 +15,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Resource = function Resource(app, api) {
     _classCallCheck(this, Resource);
 
-    domainActions = [];
+    var domainActions = [];
     if (!app) {
         throw new Error('Express app is required.');
     }

@@ -2,7 +2,7 @@ import DomainDtoModel from '../services/domain-dto';
 
 export default class Resource {
     constructor(app, api) {
-        domainActions = [];
+        let domainActions = [];
         if (!app) {
             throw new Error('Express app is required.');
         }
