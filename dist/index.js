@@ -3,9 +3,36 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GDSEventJobs = exports.GDSServiceAPI = exports.GDSUtil = exports.GDSDomainPaginateHelper = exports.GDSDomainDTO = exports.GDSDatabaseTest = exports.GDSDomainAPI = exports.GDSServices = exports.GDSServer = exports.GDSDatabase = exports.GDSChain = exports.GDSAppLogger = undefined;
+exports.GDSEventJobs = exports.GDSServiceAPI = exports.GDSUtil = exports.GDSDomainPaginateHelper = exports.GDSDomainDTO = exports.GDSDatabaseTest = exports.GDSDomainAPI = exports.GDSServices = exports.GDSServer = exports.GDSDatabase = exports.GDSAppLogger = exports.GDSResource = exports.Delete = exports.Put = exports.Post = exports.Get = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Express = require('./api/Express');
+
+Object.defineProperty(exports, 'Get', {
+  enumerable: true,
+  get: function get() {
+    return _Express.Get;
+  }
+});
+Object.defineProperty(exports, 'Post', {
+  enumerable: true,
+  get: function get() {
+    return _Express.Post;
+  }
+});
+Object.defineProperty(exports, 'Put', {
+  enumerable: true,
+  get: function get() {
+    return _Express.Put;
+  }
+});
+Object.defineProperty(exports, 'Delete', {
+  enumerable: true,
+  get: function get() {
+    return _Express.Delete;
+  }
+});
 
 var _events = require('./events/events');
 
@@ -14,10 +41,6 @@ var _services = require('./services/services');
 var _AppLogger2 = require('./logger/AppLogger');
 
 var _AppLogger3 = _interopRequireDefault(_AppLogger2);
-
-var _Chain2 = require('./chains/Chain');
-
-var _Chain3 = _interopRequireDefault(_Chain2);
 
 var _databaseConfig = require('./database/database-config');
 
@@ -49,6 +72,10 @@ var _logger = require('./logger/logger');
 
 var _logger2 = _interopRequireDefault(_logger);
 
+var _Resource = require('./api/Resource');
+
+var _Resource2 = _interopRequireDefault(_Resource);
+
 var _server = require('./server/server');
 
 var _server2 = _interopRequireDefault(_server);
@@ -61,6 +88,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var GDSResource = exports.GDSResource = _Resource2.default;
+
 var GDSAppLogger = exports.GDSAppLogger = function (_AppLogger) {
   _inherits(GDSAppLogger, _AppLogger);
 
@@ -72,18 +101,6 @@ var GDSAppLogger = exports.GDSAppLogger = function (_AppLogger) {
 
   return GDSAppLogger;
 }(_AppLogger3.default);
-
-var GDSChain = exports.GDSChain = function (_Chain) {
-  _inherits(GDSChain, _Chain);
-
-  function GDSChain(name, action, next, err) {
-    _classCallCheck(this, GDSChain);
-
-    return _possibleConstructorReturn(this, (GDSChain.__proto__ || Object.getPrototypeOf(GDSChain)).call(this, name, action, next, err));
-  }
-
-  return GDSChain;
-}(_Chain3.default);
 
 var GDSDatabase = exports.GDSDatabase = function (_DatabaseConfig) {
   _inherits(GDSDatabase, _DatabaseConfig);
@@ -127,10 +144,10 @@ var GDSDomainAPI = exports.GDSDomainAPI = function (_DomainAPIModel) {
   function GDSDomainAPI() {
     _classCallCheck(this, GDSDomainAPI);
 
-    var _this6 = _possibleConstructorReturn(this, (GDSDomainAPI.__proto__ || Object.getPrototypeOf(GDSDomainAPI)).call(this));
+    var _this5 = _possibleConstructorReturn(this, (GDSDomainAPI.__proto__ || Object.getPrototypeOf(GDSDomainAPI)).call(this));
 
-    _this6.setDomainName(process.env.DOMAIN_NAME);
-    return _this6;
+    _this5.setDomainName(process.env.DOMAIN_NAME);
+    return _this5;
   }
 
   return GDSDomainAPI;

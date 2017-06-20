@@ -8,7 +8,6 @@ import {
 } from './services/services';
 
 import AppLogger from './logger/AppLogger';
-import Chain from './chains/Chain';
 import DatabaseConfig from './database/database-config';
 import DatabaseTestConfig from './database/database-test-config';
 import DomainAPIModel from './services/domain-api';
@@ -19,17 +18,15 @@ import {
 import GetDateRange from './util/get-date-range';
 import GetJsonFieldValue from './util/get-json-field-value';
 import Logger from './logger/logger';
+import Resource from './api/Resource';
 import ServerConfig from './server/server';
 
+export { Get, Post, Put, Delete } from './api/Express';
+
+export const GDSResource = Resource;
 export class GDSAppLogger extends AppLogger {
   constructor(message) {
     super(message);
-  }
-}
-
-export class GDSChain extends Chain {
-  constructor(name, action, next, err) {
-    super(name, action, next, err);
   }
 }
 export class GDSDatabase extends DatabaseConfig {

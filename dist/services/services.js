@@ -50,15 +50,13 @@ var ServicesConfig = exports.ServicesConfig = function () {
 
             _lodash2.default.forEach(process.env, function (value, key) {
                 if (key.match(/SERVICE_PORT$/g) && !key.match(/.*_ENV_.*_SERVICE_PORT$/g)) {
-                    (function () {
-                        console.log('matches', key);
-                        var port = {};
-                        _lodash2.default.set(port, 'key', key);
-                        new _setDefaultProtocol2.default(value, function (err, httpLink) {
-                            _lodash2.default.set(port, 'value', httpLink);
-                        });
-                        _this.servicesPorts.push(port);
-                    })();
+                    console.log('matches', key);
+                    var port = {};
+                    _lodash2.default.set(port, 'key', key);
+                    new _setDefaultProtocol2.default(value, function (err, httpLink) {
+                        _lodash2.default.set(port, 'value', httpLink);
+                    });
+                    _this.servicesPorts.push(port);
                 }
             });
             new _processPorts2.default(this.servicesPorts, this.restServices, function (err, services) {
