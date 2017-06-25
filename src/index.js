@@ -8,6 +8,7 @@ import {
 } from './services/services';
 
 import AppLogger from './logger/AppLogger';
+import ChainExpress from './server/ChainExpress';
 import DatabaseConfig from './database/database-config';
 import DatabaseTestConfig from './database/database-test-config';
 import DomainAPIModel from './services/domain-api';
@@ -21,6 +22,7 @@ import Logger from './logger/logger';
 import Resource from './api/Resource';
 import ServerConfig from './server/server';
 
+export const GDSChainMiddleware = ChainExpress;
 export { Get, Post, Put, Delete } from './api/Express';
 
 export const GDSResource = Resource;

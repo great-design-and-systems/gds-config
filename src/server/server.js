@@ -1,7 +1,8 @@
 import bodyParser from 'body-parser';
-import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
 import multipart from 'connect-multiparty';
+
 const PORT = process.env.PORT || 5000;
 const ENV = process.env.APP_ENV || 'dev';
 
